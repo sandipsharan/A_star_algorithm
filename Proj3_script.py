@@ -28,3 +28,84 @@ def map_plot():
                 obstacle.add((x,y))
     
     return obstacle
+
+def Action_1(c2c, pos, move, end):
+    the = -60*np.pi/180
+    
+    current_position = ((pos[0] + move*np.cos(pos[2]+the)), (pos[1]+move*np.sin(pos[2]+the)), np.ceil(pos[2]*np.pi/180+the)*(180/np.pi))
+    cost2_come = c2c+move
+    cost2_go = np.sqrt((end[0]-current_position[0])**2 + (end[1]-current_position[1])**2)
+    final_cost = cost2_come + cost2_go
+    node = (final_cost, cost2_come, current_position)
+    if current_position not in visited_nodes and current_position not in obstacle_space:
+        queue_nodes.put(node)
+        path_dict[current_position] = pos
+    return 
+
+def Action_2(c2c, pos, move, end):
+    the = -30*np.pi/180
+    current_position = ((pos[0] + move*np.cos(pos[2]+the)), (pos[1]+move*np.sin(pos[2]+the)), np.ceil(pos[2]*np.pi/180+the)*(180/np.pi))
+    cost2_come = c2c+move
+    cost2_go = np.sqrt((end[0]-current_position[0])**2 + (end[1]-current_position[1])**2)
+    final_cost = cost2_come + cost2_go
+    node = (final_cost, cost2_come, current_position)
+    if current_position not in visited_nodes and current_position not in obstacle_space:
+        queue_nodes.put(node)
+        path_dict[current_position] = pos
+    return 
+
+def Action_3(c2c, pos, move, end):
+    the = 0*np.pi/180
+    current_position = ((pos[0] + move*np.cos(pos[2]+the)), (pos[1]+move*np.sin(pos[2]+the)), np.ceil(pos[2]*np.pi/180+the)*(180/np.pi))
+    cost2_come = c2c+move
+    cost2_go = np.sqrt((end[0]-current_position[0])**2 + (end[1]-current_position[1])**2)
+    final_cost = cost2_come + cost2_go
+    node = (final_cost, cost2_come, current_position)
+    if current_position not in visited_nodes and current_position not in obstacle_space:
+        queue_nodes.put(node)
+        path_dict[current_position] = pos
+    return 
+
+def Action_4(c2c, pos, move, end):
+    the = 30*np.pi/180
+    current_position = ((pos[0] + move*np.cos(pos[2]+the)), (pos[1]+move*np.sin(pos[2]+the)), np.ceil(pos[2]*np.pi/180+the)*(180/np.pi))
+    cost2_come = c2c+move
+    cost2_go = np.sqrt((end[0]-current_position[0])**2 + (end[1]-current_position[1])**2)
+    final_cost = cost2_come + cost2_go
+    node = (final_cost, cost2_come, current_position)
+    if current_position not in visited_nodes and current_position not in obstacle_space:
+        queue_nodes.put(node)
+        path_dict[current_position] = pos
+    return 
+
+def Action_5(c2c, pos, move, end):
+    the = 60*np.pi/180
+    current_position = ((pos[0] + move*np.cos(pos[2]+the)), (pos[1]+move*np.sin(pos[2]+the)), np.ceil(pos[2]*np.pi/180+the)*(180/np.pi))
+    cost2_come = c2c+move
+    cost2_go = np.sqrt((end[0]-current_position[0])**2 + (end[1]-current_position[1])**2)
+    final_cost = cost2_come + cost2_go
+    node = (final_cost, cost2_come, current_position)
+    
+    if current_position not in visited_nodes and current_position not in obstacle_space:
+        queue_nodes.put(node)
+        path_dict[current_position] = pos
+    return 
+
+obstacle_space = map_plot()
+initial_state = (6, 6, 0)
+node_state_g = (30, 30, 0)
+step = 1
+cc = 0
+euclidean_distance = np.sqrt((node_state_g[0]-initial_state[0])**2 + (node_state_g[1]-initial_state[1])**2)
+total_cost = euclidean_distance + cc
+node_state_i = (total_cost, cc, (initial_state))
+queue_nodes = PriorityQueue()
+path_dict = {}
+cost_dict = {}
+visited_nodes = OrderedSet()
+queue_nodes.put(node_state_i)
+theta_1 = -60*np.pi/180
+theta_2 = -30*np.pi/180
+theta_3 = 0*np.pi/180
+theta_4 = 30*np.pi/180
+theta_5 = 60*np.pi/180
