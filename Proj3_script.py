@@ -109,3 +109,24 @@ theta_2 = -30*np.pi/180
 theta_3 = 0*np.pi/180
 theta_4 = 30*np.pi/180
 theta_5 = 60*np.pi/180
+
+while True:
+    queue_pop = queue_nodes.get()
+    visited_nodes.add(queue_pop[2])
+    position = queue_pop[2]
+    x, y, theta = position
+    if int(x) != node_state_g[0] and int(y) != node_state_g[1]:
+        if (x+ step*np.cos(theta+theta_1)) <= 600 and (y + step*np.sin(theta+theta_1)) <= 250:
+            Action_1(cc, position, step, node_state_g)
+        if (x+ step*np.cos(theta+theta_1)) <= 600 and (y + step*np.sin(theta+theta_1)) <= 250:
+            Action_2(cc, position, step, node_state_g)
+        if (x+ step*np.cos(theta+theta_1)) <= 600 and (y + step*np.sin(theta+theta_1)) <= 250:
+            Action_3(cc, position, step, node_state_g)
+        if (x+ step*np.cos(theta+theta_1)) <= 600 and (y + step*np.sin(theta+theta_1)) <= 250:
+            Action_4(cc, position, step, node_state_g)
+        if (x+ step*np.cos(theta+theta_1)) <= 600 and (y + step*np.sin(theta+theta_1)) <= 250:
+            Action_5(cc, position, step, node_state_g)
+
+    else: 
+        print("Success")
+        break
