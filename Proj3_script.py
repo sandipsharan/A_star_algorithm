@@ -91,6 +91,28 @@ def Action_5(c2c, pos, move, end):
         path_dict[current_position] = pos
     return 
 
+# For back tracking to initial position
+def back_tracking(path, initial_state, pre_queue):
+    best_path = []
+    queue_pop_tup = pre_queue[2]
+    queue_pop_initial = initial_state[2]
+    best_path.append(queue_pop_tup)
+    parent_node = path[queue_pop_tup]
+    best_path.append(parent_node)
+
+    while parent_node != queue_pop_initial:
+        parent_node = path[parent_node]
+        best_path.append(parent_node)
+        if pre_queue == queue_pop_initial:
+            parent_node = path[queue_pop_tup]
+            best_path.append(parent_node)
+            break
+    best_path.reverse()
+    print("Path Taken: ")
+    for i in best_path:
+        print(i)
+    return best_path
+
 obstacle_space = map_plot()
 initial_state = (6, 6, 0)
 node_state_g = (30, 30, 0)
@@ -128,5 +150,6 @@ while True:
             Action_5(cc, position, step, node_state_g)
 
     else: 
+        d = back_tracking(path_dict, node_state_i, queue_pop)
         print("Success")
         break
